@@ -10,7 +10,7 @@ export default function useList(init) {
             setList(filteredList);
         },
         saveItem(index, newVal) {
-            const copyList = [...list];
+            const copyList = [...list]; 
             copyList[index].name = newVal;
             setList(copyList);
         }

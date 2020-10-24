@@ -1,36 +1,30 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import "./App.scss";
+import Child from "./components/child";
 
 
-const initXY = {
-  x : null,
-  y : null
-}
+
 function App() {
-  const [time , setTime] = useState(Date);
-  const [xy, setInitXY] =  useState(initXY);
+  const [i, setI] = useState(0); 
 
-  useEffect( () => {
-    setInterval(() => {
-      setTime(Date);  
-    }, 1000);
-  });
-    
-  useEffect(() => {
-    window.addEventListener("mousemove", mouseMoveHandle);
-  },[]);
+  function incrementIHandle() {
+    setI(i + 1);
+  };
 
-  const mouseMoveHandle = (e) => {
-    setInitXY({
-      x : e.clientX,
-      y : e.clientY
-    })
-  }
+  const memoChild = useMemo(() => {
+    return <Child></Child>
+  },[i]);
+
   return (
     <div className="App">
       <header className="App-header">
-        <div >{time}</div>
-        <div>{`${xy.x} ${xy.y}`}</div>
+        <div>Use Memo</div>
+        <div>i : {i}</div>
+        <button onClick={incrementIHandle}>Increment I</button> 
+        <div>Normal Render</div>
+        <Child></Child>
+        <div>Memo Render</div>
+         {memoChild}
       </header>
     </div>
   );
