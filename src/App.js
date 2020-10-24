@@ -1,47 +1,23 @@
-import React, { useEffect, useState} from "react";
+import React, { useState } from "react";
 import "./App.scss";
+import CustomButton from "./components/button";
 
 
-let born = false;
 function App() {
-    const [growth, setGrowth] =  useState(0);
-    const [nirvana, setNirvana] = useState(false);
-    const [buttonDisabled, setButtonDisabled] = useState(false);
+  const [color, setColor] = useState("red");
 
-    useEffect(() => {
-        console.log("i am born");
-    },[]);
-
-    useEffect(() => {
-      if(!nirvana) {
-        if(born) {
-          console.log("Make mistake and learn");
-        } else {
-          born = true;
-        }
-      }  
-      
-    },[nirvana,growth]);
-
-    useEffect(() => {
-      if( growth === 210) {
-        setNirvana(true);
-        console.log("Nirvana achived");
-        setButtonDisabled(true);
- 
-       } 
-    },[growth]);
-
-    const growthHandle = () => {
-      setGrowth(growth + 10);
-    };
-
+  function handleOnClick() {
+    console.log("handling on click");
+    if(color === "red")
+      setColor("green");
+    else
+      setColor("red");  
+  };
+    
   return (
     <div className="App">
       <header className="App-header">
-        <h2>Use Effect</h2>
-        <h3>growth : {growth}</h3>
-        <button disabled={buttonDisabled} onClick={growthHandle}>Grow</button>
+        <CustomButton color={color} onClick={handleOnClick}></CustomButton>
       </header>
     </div>
   );
