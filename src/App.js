@@ -1,30 +1,20 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useState } from "react";
 import "./App.scss";
-import Child from "./components/child";
+import usePrevious from "./hooks/usePrevious";
 
 
 
 function App() {
-  const [i, setI] = useState(0); 
-
-  function incrementIHandle() {
-    setI(i + 1);
-  };
-
-  const memoChild = useMemo(() => {
-    return <Child></Child>
-  },[i]);
+  const [age, setAge] = useState(21);
+  const previousAge =  usePrevious(age);
 
   return (
     <div className="App">
       <header className="App-header">
-        <div>Use Memo</div>
-        <div>i : {i}</div>
-        <button onClick={incrementIHandle}>Increment I</button> 
-        <div>Normal Render</div>
-        <Child></Child>
-        <div>Memo Render</div>
-         {memoChild}
+        <h2>age : {age}</h2>
+        <h2>previousAge : {previousAge.current}</h2>
+        <button onClick={() => {setAge(age-1);}}>Make Me Younger</button>
+        
       </header>
     </div>
   );
