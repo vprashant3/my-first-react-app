@@ -1,8 +1,8 @@
-import React, {useCallback, useEffect, useState} from "react";
+import React, { useEffect, useState} from "react";
 import "./App.scss";
 
 
-let born;
+let born = false;
 function App() {
     const [growth, setGrowth] =  useState(0);
     const [nirvana, setNirvana] = useState(false);
@@ -21,7 +21,7 @@ function App() {
         }
       }  
       
-    },[nirvana]);
+    },[nirvana,growth]);
 
     useEffect(() => {
       if( growth === 210) {
