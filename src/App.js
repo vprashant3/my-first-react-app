@@ -1,23 +1,36 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.scss";
-import CustomButton from "./components/button";
 
 
+const initXY = {
+  x : null,
+  y : null
+}
 function App() {
-  const [color, setColor] = useState("red");
+  const [time , setTime] = useState(Date);
+  const [xy, setInitXY] =  useState(initXY);
 
-  function handleOnClick() {
-    console.log("handling on click");
-    if(color === "red")
-      setColor("green");
-    else
-      setColor("red");  
-  };
+  useEffect( () => {
+    setInterval(() => {
+      setTime(Date);  
+    }, 1000);
+  });
     
+  useEffect(() => {
+    window.addEventListener("mousemove", mouseMoveHandle);
+  },[]);
+
+  const mouseMoveHandle = (e) => {
+    setInitXY({
+      x : e.clientX,
+      y : e.clientY
+    })
+  }
   return (
     <div className="App">
       <header className="App-header">
-        <CustomButton color={color} onClick={handleOnClick}></CustomButton>
+        <div >{time}</div>
+        <div>{`${xy.x} ${xy.y}`}</div>
       </header>
     </div>
   );
