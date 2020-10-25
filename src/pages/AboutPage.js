@@ -1,8 +1,7 @@
-import React from 'react-router-dom'
-
+import React from "react";
 
 function AboutPage() {
-    return <h1>Welocme About</h1>;
+  return <h1>Welocme About</h1>;
 }
 
 export default AboutPage;

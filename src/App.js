@@ -1,21 +1,16 @@
 import React from "react";
 import "./App.scss";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Route, Link } from "react-router-dom";
 import AboutPage from "./pages/AboutPage";
 import UserPage from "./pages/UserPage";
+import HomePage from "./pages/HomePage";
 
 function App() {
   return (
     <BrowserRouter>
       <div className="App">
         <header className="App-header">
-          <Route
-            path="/"
-            exact
-            render={() => {
-              return <h1>Welocme Home</h1>;
-            }}
-          ></Route>
+          <Route path="/" exact component={HomePage}></Route>
 
           <Route path="/about" exact component={AboutPage}></Route>
 
