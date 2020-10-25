@@ -1,4 +1,4 @@
-import  {useRef, useEffect} from 'react';
+import  {useRef, useEffect, useDebugValue} from 'react';
 
 
 function usePrevious(value) {
@@ -6,6 +6,7 @@ function usePrevious(value) {
     useEffect(() => {
         ref.current = value;
     });
+    useDebugValue(ref.current > 10 ? "too much" : "too little");    
     return ref;
 }
 

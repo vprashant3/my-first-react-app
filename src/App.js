@@ -1,19 +1,26 @@
+import { getElementError } from "@testing-library/react";
 import React, { useState } from "react";
 import "./App.scss";
-import usePrevious from "./hooks/usePrevious";
-
+import useCustomFetch from "./hooks/useCustomFetch";
 
 
 function App() {
-  const [age, setAge] = useState(21);
-  const previousAge =  usePrevious(age);
+  const [url, setUrl] = useState(null);
+  function getFollowers(e) {
+    if(e.key === 'Enter')
+     setUrl("https://api.github.com/user/"+e.target.value);
+  }
 
+  useCustomFetch(url);
+  
   return (
     <div className="App">
       <header className="App-header">
-        <h2>age : {age}</h2>
-        <h2>previousAge : {previousAge.current}</h2>
-        <button onClick={() => {setAge(age-1);}}>Make Me Younger</button>
+       <h2>
+         Get ID:
+         <input onKeyPress={getFollowers}></input>
+       </h2>
+       
         
       </header>
     </div>
