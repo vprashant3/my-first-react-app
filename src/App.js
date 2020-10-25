@@ -1,29 +1,32 @@
-import { getElementError } from "@testing-library/react";
-import React, { useState } from "react";
+import React from "react";
 import "./App.scss";
-import useCustomFetch from "./hooks/useCustomFetch";
-
+import { BrowserRouter, Route } from "react-router-dom";
+import AboutPage from "./pages/AboutPage";
+import UserPage from "./pages/UserPage";
 
 function App() {
-  const [url, setUrl] = useState(null);
-  function getFollowers(e) {
-    if(e.key === 'Enter')
-     setUrl("https://api.github.com/user/"+e.target.value);
-  }
-
-  useCustomFetch(url);
-  
   return (
-    <div className="App">
-      <header className="App-header">
-       <h2>
-         Get ID:
-         <input onKeyPress={getFollowers}></input>
-       </h2>
-       
-        
-      </header>
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <header className="App-header">
+          <Route
+            path="/"
+            exact
+            render={() => {
+              return <h1>Welocme Home</h1>;
+            }}
+          ></Route>
+
+          <Route path="/about" exact component={AboutPage}></Route>
+
+          <Route
+            path="/user/:firstName/:lastName"
+            exact
+            component={UserPage}
+          ></Route>
+        </header>
+      </div>
+    </BrowserRouter>
   );
 }
 
