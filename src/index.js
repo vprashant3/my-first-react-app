@@ -3,15 +3,16 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-import { combineReducers, createStore } from "redux";
+import { combineReducers, createStore, applyMiddleware } from "redux";
 import balanceReducer from "./store/balanceReducer";
 import loanReducer from "./store/loanReducer";
 import {Provider} from "react-redux";
+import thunk from "redux-thunk";
 
 const store = createStore(combineReducers({
     balanceReducer,
     loanReducer
-}));
+}), applyMiddleware(thunk));
 
 ReactDOM.render(
   <Provider store={store}>
