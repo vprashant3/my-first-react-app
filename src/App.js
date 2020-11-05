@@ -1,32 +1,34 @@
-import React from "react";
+import React, { useReducer } from "react";
 import "./App.scss";
-import { BrowserRouter, Route, NavLink } from "react-router-dom";
-import HomePage from "./pages/HomePage";
-import WithdrawPage from "./pages/Withdraw";
-import DespositPage from "./pages/Deposit"
 
+const initState = {
+  count : 0
+}
+
+function reducerFunction(state, aciton) {
+  switch(aciton.type) {
+  case "INCREMENT":
+    return {count : state.count + 1};
+  case "DECREMENT":
+    return {count : state.count - 1};
+  default :
+    return state;  
+}  
+
+}
 function App() {
+const [state, dispatch] = useReducer(reducerFunction, initState);
+
   return (
-    <BrowserRouter>
       <div className="App">
         <header className="App-header">
-          <ul>
-            <li>
-              <NavLink className="title" to="/">Home</NavLink>
-            </li>
-            <li>
-              <NavLink className="title" to="/deposit">Deposit</NavLink>
-            </li>
-            <li className="title">
-              <NavLink className="title" to="/withdraw">Withdraw</NavLink>
-            </li>
-          </ul>
-          <Route path="/" exact component={HomePage}></Route>
-          <Route path="/deposit" exact component={DespositPage}></Route>
-          <Route path="/withdraw" exact component={WithdrawPage}  ></Route>
-        </header>
+          <h2>Use Reducer</h2>
+          <h3>Count : {state.count}</h3>
+          <button onClick={() => dispatch({type : "INCREMENT"})}>Increment</button>
+          <button onClick={() => dispatch({type : "DECREMENT"})}>Decrement</button>
+
+          </header>
       </div>
-    </BrowserRouter>
   );
 }
 
