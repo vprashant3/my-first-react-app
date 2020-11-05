@@ -1,35 +1,34 @@
-import React, { useReducer } from "react";
+import React from "react";
 import "./App.scss";
+import { observer, useLocalObservable} from "mobx-react";
 
-const initState = {
-  count : 0
-}
+const App = observer(() => {
+  const store = useLocalObservable({
+    count: 1,
+    addOne() {
+      store.count++;
+    },
+    subtractOne() {
+      store.count--;
+    },
+  });
+  function addOneHandle() {
+    store.addOne();
+  }
 
-function reducerFunction(state, aciton) {
-  switch(aciton.type) {
-  case "INCREMENT":
-    return {count : state.count + 1};
-  case "DECREMENT":
-    return {count : state.count - 1};
-  default :
-    return state;  
-}  
-
-}
-function App() {
-const [state, dispatch] = useReducer(reducerFunction, initState);
+  function subtractOneHandle() {
+    store.subtractOne();
+  }
 
   return (
-      <div className="App">
-        <header className="App-header">
-          <h2>Use Reducer</h2>
-          <h3>Count : {state.count}</h3>
-          <button onClick={() => dispatch({type : "INCREMENT"})}>Increment</button>
-          <button onClick={() => dispatch({type : "DECREMENT"})}>Decrement</button>
-
-          </header>
-      </div>
+    <div className="App">
+      <header className="App-header">
+        <h1>Count : {store.count}</h1>
+        <button onClick={addOneHandle}>Add One</button>
+        <button onClick={subtractOneHandle}>Subtrack One</button>
+      </header>
+    </div>
   );
-}
+});
 
 export default App;
