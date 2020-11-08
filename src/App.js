@@ -1,6 +1,6 @@
 import React  from "react";
 import "./App.scss";
-import Button from  "./components/button/button";
+import Button from  "./learning/components/button/button";
 
 const App = () =>{
   return (

@@ -4,8 +4,8 @@ import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { combineReducers, createStore, applyMiddleware } from "redux";
-import balanceReducer from "./store/balanceReducer";
-import loanReducer from "./store/loanReducer";
+import balanceReducer from "./learning/store/balanceReducer";
+import loanReducer from "./learning/store/loanReducer";
 import {Provider} from "react-redux";
 import thunk from "redux-thunk";
 
