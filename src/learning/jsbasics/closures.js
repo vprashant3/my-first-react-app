@@ -20,3 +20,5 @@ function x() {
 }
 
 x();
+
+once();
