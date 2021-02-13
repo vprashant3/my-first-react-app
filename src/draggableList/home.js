@@ -1,4 +1,4 @@
-import React, { useState, userEffect } from "react";
+import React, { useState} from "react";
 import { Link } from "react-router-dom";
 
 const initList = [1, 2, 3, 4, 5, 6];
